@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,12 +47,47 @@
         a:hover {
             text-decoration: underline;
         }
+        b {
+            color:#007BFF; 
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
 
         /* Style images */
         img {
             max-width: 100%;
             height: auto;
         }
+        
+        /* Your CSS styles here */
+
+        /* Additional styles for the present box */
+        .present-box {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .present-box img {
+            max-width: 80%;
+            height: auto;
+        }
+
+        .gift-wrap {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none;
+        }
+
+        .present-box.open .gift-wrap {
+            display: block;
+        }
+    
     </style>
 </head>
 <body>
@@ -66,21 +100,33 @@
         <p>I hope by opening this you get your most desired wish or thing 🐾</p>
         <p>lmfaooo hahahahahhahahaaha!!! 😝🤓🎅🏼👻😝👻🤓💗💗</p>
         <p><a href="index.html">Back to Home</a></p>
-        
     </main>
+    
+    <!-- Your body content here -->
+
+    <!-- Present box container with the open/close functionality -->
+    <div class="present-box" onclick="togglePresent()">
+        <img src="present.png" alt="Closed Present" id="presentImage">
+        <div class="gift-wrap" id="giftWrap">
+            <p> 🎁 Yay! you opened this present..🤓👆🏿 </p>
+            <p><img src="cat2.jpg" alt="cat"></p>
+        </div>
+    </div>
+
+    <!-- Your body content here -->
+
+    <!-- JavaScript for the present box functionality -->
+    <script>
+        function togglePresent() {
+            var presentBox = document.querySelector(".present-box");
+            presentBox.classList.toggle("open");
+        }
+    </script>
 
     <footer>
         <p>© 2023 Cool Website. All rights reserved.</p>
+        <p><b href="interface.html">aage chliye ji</b></p>
     </footer>
 
 </body>
 </html>
-
-
-    <footer>
-        <p>© 2023 Cool Website. All rights reserved.</p>
-    </footer>
-
-</body>
-</html>
->>>>>>> 737b06c3b5ef88c7335c39c14e23da1dc0759e9a
