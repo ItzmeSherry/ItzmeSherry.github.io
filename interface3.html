@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cute Website - Interface</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fce4ec; /* Light Pink */
+            color: #333;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        #container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        .checkbox-container {
+            margin: 20px;
+        }
+
+        .movable {
+            cursor: move;
+            user-select: none;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block;
+            background-color: #fff; /* White */
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .movable:hover {
+            transform: scale(1.05);
+        }
+
+        .floating-checkbox {
+            cursor: pointer;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .floating-checkbox:hover {
+            transform: translate(50px, 50px);
+        }
+
+        input[type="checkbox"][disabled] {
+            opacity: 0.5;
+        }
+
+        footer {
+            background-color: #ff80ab; /* Pink */
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        p.footer-text {
+            margin: 0;
+            font-size: 14px;
+            color: #fff;
+        }
+
+        /* Additional styles for the No checkbox movement */
+        .floating-no-checkbox {
+            cursor: pointer;
+            transition: transform 0.5s ease-in-out;
+            display: inline-block;
+        }
+
+        .floating-no-checkbox:hover {
+            transform: translate(-50px, -50px);
+        }
+        .checkbox-container {
+            cursor: pointer;
+            transition: tranform 0.5s ease-in-out;
+            display: inline-block;
+        }
+
+        .checkbox-container:hover {
+            transform: translate(-50px, -50px)
+        }
+    </style>
+</head>
+<body>
+
+    <div id="container">
+        <h2>Choose Your Preferences</h2>
+
+        <div class="checkbox-container">
+            <p>Option 1: <input type="checkbox" id="yesCheckbox"> Yes</p>
+        </div>
+
+        <div class="checkbox-container">
+            <p>Option 2: <label class="movable" id="noCheckboxLabel">
+                <input type="checkbox" id="noCheckbox" disabled> No
+            </label></p>
+        </div>
+
+        <div class="checkbox-container">
+            <p>Option 3: <input type="checkbox" id="option3Checkbox"> I'm undecided</p>
+        </div>
+
+        <div class="checkbox-container">
+            <p>Option 4: <label class="movable" id="option4CheckboxLabel">
+                <input type="checkbox" id="option4Checkbox" disabled> Prefer not to say
+            </label></p>
+        </div>
+
+        <!-- Floating Checkbox -->
+        <div class="floating-checkbox">
+            <label>
+                <input type="checkbox" id="floatingCheckbox"> Floating Checkbox
+            </label>
+        </div>
+
+        <!-- Floating No Checkbox -->
+        <div class="floating-no-checkbox">
+            <label>
+                <input type="checkbox" id="floatingNoCheckbox"> Floating No Checkbox
+            </label>
+        </div>
+    </div>
+
+    <footer>
+        <p class="footer-text">© 2023 Cute Website. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Make the movable checkboxes draggable
+        const noCheckboxLabel = document.getElementById('noCheckboxLabel');
+        const option4CheckboxLabel = document.getElementById('option4CheckboxLabel');
+        makeElementMovable(noCheckboxLabel);
+        makeElementMovable(option4CheckboxLabel);
+
+        function makeElementMovable(element) {
+            let offsetX, offsetY, isDragging = false;
+
+            element.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                offsetX = e.clientX - element.getBoundingClientRect().left;
+                offsetY = e.clientY - element.getBoundingClientRect().top;
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (isDragging) {
+                    const x = e.clientX - offsetX;
+                    const y = e.clientY - offsetY;
+
+                    element.style.left = `${x}px`;
+                    element.style.top = `${y}px`;
+                }
+            });
+
+            document.addEventListener('mouseup', () => {
+                isDragging = false;
+            });
+        }
+    </script>
+</body>
+</html>
